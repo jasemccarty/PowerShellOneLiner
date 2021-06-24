@@ -1,0 +1,1 @@
+Get-VM -Name $VM | Get-HardDisk | Select-Object Name,CapacityGB,@{N="Disk";E={$_.ExtensionData.UnitNumber}},@{N="PfaVolume";E={Get-PfaVolumeNameFromVvolUuid -vvolUUID (Get-VvolUuidFromVmdk -vmdk $_)}} | ft
