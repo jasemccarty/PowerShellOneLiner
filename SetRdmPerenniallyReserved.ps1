@@ -1,0 +1,1 @@
+(Get-VM -Name VMNAME | Get-HardDisk | Where-Object {$_.DiskType -eq "RawPhysical"}| % {(Get-EsxCli -VMHost (Get-VMhost (Get-VM $_.Parent).VMHost) -v2).storage.core.device.setconfig.invoke(@{device=$_.scsicanonicalname;perenniallyreserved=$true})})
