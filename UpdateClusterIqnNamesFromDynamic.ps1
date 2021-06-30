@@ -1,0 +1,1 @@
+Get-Cluster -Name "C1" | Get-VMhost | % { $esxcli=Get-EsxCli -VMhost $_ -V2;$vmhba=Get-VMHostHba -Host $_ -Type Iscsi;$esxcli.iscsi.adapter.set.invoke(@{adapter="$($vmhba.device)";name="$($vmhba.IscsiName)";skipifsessionactive=$false})}
